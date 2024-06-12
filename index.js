@@ -15,7 +15,10 @@ btnStart.addEventListener('click', function() {
     result.textContent = '';
     resultFinally.textContent = '';
 
-    if (number.value === '') return validation();
+    if (number.value === '') {
+        validation();
+        return
+    }
 
     mainContent.classList.add('main-hidden');
     loader.classList.remove('loader-hidden');
@@ -30,7 +33,7 @@ btnStart.addEventListener('click', function() {
         })
         .catch((error) => {
             result.textContent = (
-                error.name === undefined ? error : 'Ошибка ' + error.name + '. Проверьте url'
+                !error.name ? error : 'Ошибка ' + error.name + '. Проверьте url'
             )
         })
         .finally(() => {
